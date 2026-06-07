@@ -38,7 +38,7 @@ with col_a:
     st.dataframe(df_an3)
     if HAS_MATPLOTLIB:
         fig, ax = plt.subplots(figsize=(10, 5))
-        ax.scatter(ns, an3, color="tab:blue")
+        ax.plot(ns, an3, color="tab:blue", linewidth=2, marker='o')
         ax.set_xlabel("n")
         ax.set_ylabel("a_n")
         ax.set_title("a_n = 3n - 1 (점 그래프)")
@@ -68,8 +68,7 @@ with col_s:
     st.dataframe(df_sn)
     if HAS_MATPLOTLIB:
         fig2, ax2 = plt.subplots(figsize=(10, 5))
-        # discrete points only for natural n
-        ax2.scatter(ns0, Sn, color='tab:red')
+        ax2.plot(ns0, Sn, color='tab:red', linewidth=2, marker='o')
         ax2.scatter([0, n_intercept], [0, 0], color='black', s=50, zorder=5)
         # annotate positions
         ymax = max(Sn) if len(Sn) > 0 else 1
@@ -111,8 +110,7 @@ st.dataframe(df_sn)
 
 if HAS_MATPLOTLIB:
     fig2, ax2 = plt.subplots(figsize=(10, 5))
-    # discrete points only
-    ax2.scatter(ns0, Sn, color='tab:red')
+    ax2.plot(ns0, Sn, color='tab:red', linewidth=2, marker='o')
     ax2.scatter([0, int(n_intercept)], [0, 0], color='black', s=50, zorder=5)
     ax2.set_xlabel('n')
     ax2.set_ylabel('S(n)')
