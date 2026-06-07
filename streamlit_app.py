@@ -94,7 +94,7 @@ st.subheader("S(n) 시각화 — 원점과 지정된 n-절편 통과")
 st.write("원점(0,0)과 사용자가 지정한 n-절편을 지나는 이차함수 형태로 S(n)을 그립니다.")
 
 # 사용자 입력: n-절편과 스케일 계수 p
-n_intercept = st.number_input("n-절편 (n-intercept)", min_value=1, value=20, step=1)
+n_intercept = st.number_input("n-절편 (n-intercept)", min_value=1, value=19, step=1)
 p_scale = st.number_input("스케일 계수 p (양수 — 위로 볼록)", min_value=0.01, value=1.0, step=0.1)
 
 # 시각화 범위 설정
