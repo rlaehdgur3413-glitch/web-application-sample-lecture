@@ -37,7 +37,7 @@ with col_a:
     df_an3 = pd.DataFrame({"n": ns, "a_n = 3n - 1": an3})
     st.dataframe(df_an3)
     if HAS_MATPLOTLIB:
-        fig, ax = plt.subplots()
+        fig, ax = plt.subplots(figsize=(10, 5))
         ax.scatter(ns, an3, color="tab:blue")
         ax.set_xlabel("n")
         ax.set_ylabel("a_n")
@@ -48,10 +48,11 @@ with col_a:
         else:
             ax.set_xticks(ns[:: max(1, len(ns)//30)])
         ax.set_xlim(min(ns) - 0.5, max(ns) + 0.5)
+        ax.tick_params(axis='x', rotation=45)
         ax.grid(True, linestyle='--', alpha=0.5)
+        fig.tight_layout()
         st.pyplot(fig)
     else:
-        st.warning("`matplotlib`이 설치되어 있지 않아 점 그래프를 선 그래프로 대체합니다.")
         st.line_chart(pd.DataFrame({"a_n": an3}, index=ns))
 
 with col_s:
@@ -66,7 +67,7 @@ with col_s:
     df_sn = pd.DataFrame({"n": ns0, "S(n)": Sn})
     st.dataframe(df_sn)
     if HAS_MATPLOTLIB:
-        fig2, ax2 = plt.subplots()
+        fig2, ax2 = plt.subplots(figsize=(10, 5))
         # discrete points only for natural n
         ax2.scatter(ns0, Sn, color='tab:red')
         ax2.scatter([0, n_intercept], [0, 0], color='black', s=50, zorder=5)
@@ -82,10 +83,11 @@ with col_s:
         else:
             ax2.set_xticks(ns0[:: max(1, len(ns0)//30)])
         ax2.set_xlim(min(ns0) - 0.5, max(ns0) + 0.5)
+        ax2.tick_params(axis='x', rotation=45)
         ax2.grid(True, linestyle='--', alpha=0.5)
+        fig2.tight_layout()
         st.pyplot(fig2)
     else:
-        st.warning("`matplotlib`이 설치되어 있지 않아 포물선을 선 그래프로 대체합니다.")
         st.line_chart(pd.DataFrame({"S(n)": Sn}, index=ns0))
 
 st.markdown("---")
@@ -108,7 +110,7 @@ df_sn = pd.DataFrame({"n": ns0, "S(n)": Sn})
 st.dataframe(df_sn)
 
 if HAS_MATPLOTLIB:
-    fig2, ax2 = plt.subplots()
+    fig2, ax2 = plt.subplots(figsize=(10, 5))
     # discrete points only
     ax2.scatter(ns0, Sn, color='tab:red')
     ax2.scatter([0, int(n_intercept)], [0, 0], color='black', s=50, zorder=5)
@@ -120,21 +122,18 @@ if HAS_MATPLOTLIB:
     else:
         ax2.set_xticks(ns0[:: max(1, len(ns0)//30)])
     ax2.set_xlim(min(ns0) - 0.5, max(ns0) + 0.5)
+    ax2.tick_params(axis='x', rotation=45)
     ax2.grid(True, linestyle='--', alpha=0.5)
+    fig2.tight_layout()
     st.pyplot(fig2)
 else:
-    st.warning("`matplotlib`이 설치되어 있지 않아 포물선 세부 표시는 제한됩니다. 선 그래프로 대체합니다.")
     st.line_chart(pd.DataFrame({"S(n)": Sn}, index=ns0))
-st.subheader("학습 활동 아이디어")
-st.write(
-    "1. a₁과 d를 바꿔가며 a(n)과 S(n)의 변화 양상을 관찰합니다.\n"
-    "2. 항의 개수를 늘릴 때 a(n)과 S(n)의 증가 속도를 비교합니다.\n"
-)
-st.write(
-    "3. 문제 예시: 1) a₁=5, d=3 일 때 10번째 항을 구하시오. "
-    "2) a₁=2, d=-1 일 때 처음 8개 합을 구하시오."
-)
+st.subheader("무엇을 생각해볼 수 있을까?")
+st.write("1. 다음 등차수열의 일반항과 합을 함수로 해석하면 무엇을 알 수 있을까?")
+st.latex(r"a_n = 3n - 1")
+st.latex(r"s_n = pn(n-20)")
+st.latex(r"s_n = pn(n-19)")
 
 st.info(
-    "이 페이지를 사용해 수업을 구성하면, 등차수열의 일반항과 합을 함수 개념으로 자연스럽게 연결할 수 있습니다."
+    "수열을 함수로 해석하여 시각적으로 이해해 봅시다."
 )
